@@ -3,7 +3,7 @@ import './box.css'
 
 const Box = () => {
     return (
-        <div className="game box">
+        <div className="box">
             ?
         </div>
     )

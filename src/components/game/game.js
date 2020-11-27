@@ -4,21 +4,24 @@ import "./game.css"
 
 
 const Game = ({guessWord}) => {
-    guessWord = "Pokemon"
+
+
+    guessWord = "pokemon"
     var wordArr = guessWord.split('');
+    const iter =0
 
-    console.log(wordArr)
+   // console.log(wordArr)
 
-    function mapBox (){
-        console.log('ss')
-        wordArr.map(()=>{
-            // <Box/>
-            <h1>sad</h1>
+    const  mapBox  = (
+      //  console.log('ss')
+        wordArr.map( (arr)=>{
+            
+          return  <Box key={arr} />
         })
 
-    }
+    )
 
-
+    
     const [letter, setLetter] = useState('')
   
 
@@ -28,10 +31,11 @@ const Game = ({guessWord}) => {
     }
 
     return (
-        <div className="game">
+        <div >
             <input onChange={handleSubmit} type="text"/>
-            {/* <Box/> */}
-            {mapBox}
+            <div className="game">
+                {mapBox}
+            </div> 
         </div>
     )
 }
