@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { isCompositeComponentWithType } from 'react-dom/test-utils'
 import Box from './box/box'
 import "./game.css"
 
@@ -23,11 +24,19 @@ const Game = ({guessWord}) => {
 
     
     const [letter, setLetter] = useState('')
-  
+    const [lastLetter, setLastLetter] = useState('')
+
+    var inp_word=''    
+    var last_let =''
+    var last_letAr =[]
 
     const handleSubmit = (e)=>{
-            setLetter(e.target.value)
-        
+            inp_word = e.target.value
+            setLetter(inp_word)
+            last_letAr = inp_word.split('')
+            last_let = last_letAr[last_letAr.length-1]
+            setLastLetter(last_let)
+            console.log( lastLetter)
     }
 
     return (
