@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { isCompositeComponentWithType } from 'react-dom/test-utils'
 import Box from './box/box'
+import Victory from './Victory/victory'
 import "./game.css"
 
 
 const Game = ({guessWord}) => {
 
-    const [letter, setLetter] = useState('')
-    const [lastLetter, setLastLetter] = useState('')
+    
 
 
     guessWord = "pokemon"
@@ -20,6 +19,7 @@ const Game = ({guessWord}) => {
         })
     })
     const [labelArray, setlabelArray] = useState(dummyarr)
+    const [win, setWin] = useState(false)
 
   //  setlabelArray(dummyarr)
    // console.log(wordArr)
@@ -34,25 +34,41 @@ const Game = ({guessWord}) => {
 
     )
 
+
+    function checkWin () {
+
+            let  temp_win = true 
+
+            labelArray.forEach(element => {
+                if (element.found===false) {
+                    temp_win = false
+                }
+               
+            });
+            
+            if (temp_win) {
+                setWin(true)
+            }
+    }   
+
          
 
-    var inp_word=''    
+  
     var last_let =''
     var last_letAr =[]
 
     function handleSubmit(e){
-            // inp_word = e.target.value
-            // setLetter(inp_word)
+            
 
             last_letAr = e.target.value.split('')
             last_let = last_letAr[last_letAr.length-1]
-            setLastLetter(last_let)
+          
 
 
             labelArray.forEach(element => {
          
 
-                if (last_let == element.letter ) {
+                if (last_let === element.letter ) {
                     element.found = true
                     let newArr = [...labelArray]; // copying the old datas array
                     let num = labelArray.indexOf(element)
@@ -61,7 +77,9 @@ const Game = ({guessWord}) => {
                     setlabelArray(newArr); // ??
                 }
             });
-         console.table(labelArray)
+
+            checkWin()
+        
         
     }
 
@@ -70,7 +88,9 @@ const Game = ({guessWord}) => {
             <input onChange={handleSubmit} type="text"/>
             <div className="game">
                 {mapBox}
-                {/* <button> {lastLetter} </button> */}
+                { (win) ?  <Victory /> : <React.Fragment></React.Fragment>} 
+                
+            
             </div> 
         </div>
     )

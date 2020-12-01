@@ -30,7 +30,7 @@ const Box = ({found,ch}) => {
 
                 { //Check if message failed
                  
-                    (found===false )
+                    (found==false )
                    
                             ? <div className="box"> ? </div> 
                             : <div className="dabba"> {ch} </div> 
